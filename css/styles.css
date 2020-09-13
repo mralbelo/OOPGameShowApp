@@ -20,7 +20,8 @@
 
 * {
   box-sizing: border-box;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Orbitron', sans-serif;
+  text-transform: uppercase;
 }
 
 body {
@@ -28,6 +29,7 @@ body {
   flex-direction: column;
   display: flex;
   height: 100vh;
+  background-color: #000219;
 }
 
 li, ol, ul {
@@ -58,6 +60,12 @@ button {
   -o-transition: var(--transition);
   transition: var(--transition);
   cursor: pointer;
+  border: 2px #00d0ff solid;
+  background: #00d0ff26;
+  color: white;
+  box-shadow: 0 0 6px #00d0ff;
+  text-shadow: 0 0 3px white;
+  user-select: none;
 }
 
 #btn__reset {
@@ -86,7 +94,8 @@ button {
 /* Title */
 
 .header {
-  color: #3a3f58;
+  color: #00d0ff;
+  text-shadow: 0 0 11px #00d0ff;
 }
 
 
@@ -99,7 +108,7 @@ button {
   padding: 20px 1px 0 1px;
   margin-right: 2px;
   color: transparent;
-  background: var(--color-neutral-light);
+  background-color: #ffffff08;
   border-radius: 5px;
 }
 
@@ -110,8 +119,11 @@ button {
 
 
 .show {
-  color: #fff;
-  background-color: #4ac0d5;
+  color: white;
+  text-shadow: 0 0 3px white;
+  background: #00ff084f;
+  border: 2px solid #00ff08;
+  box-shadow: 0 0 6px #00ff08;
   font-size: 20px;
   height: 65px;
   width: 65px;
@@ -131,15 +143,22 @@ button {
 }
 
 .chosen {
-  background: #3a3f58;
+  cursor: not-allowed;
   border-radius: 5px;
   font-size: var(--font-size-medium);
   color: #FFFFFF;
+  background: #00ff084f;
+  border-color: #00ff08;
+  box-shadow: 0 0 6px #00ff08;
 }
 
 .wrong {
-  background: #f7a964;
-  color: #FFFFFF;
+  cursor: not-allowed;
+  color: #ffffff17;
+  text-shadow: 0 0 3px #ffffff26;
+  background: #ffffff14;
+  border-color: #ffffff0d;
+  box-shadow: 0 0 6px transparent;
 }
 
 .btn__reset {
@@ -176,11 +195,12 @@ button {
 }
 
 .title {
-  color: #FFF;
+  color: #00d0ff;
+  text-shadow: 0 0 11px #00d0ff;
 }
 
 .start {
-  background-color: #3a3f58;
+  background-color: #000219;
 }
 
 .start a {
@@ -201,4 +221,13 @@ button {
 
 .lose a {
   color: var(--color-lose);
+}
+
+.winner {
+  color: #00ff08;
+  text-shadow: 0 0 7px #00ff08;
+}
+.loser{
+  color: #ff0000;
+  text-shadow: 0 0 7px #ff0000;
 }

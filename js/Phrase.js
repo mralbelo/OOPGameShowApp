@@ -9,11 +9,11 @@ class Phrase {
         this.phrase = phrase.toLowerCase();
     }
 
+    // This method displays the phrase
     addPhraseToDisplay() {
         const phraseUl = document.querySelector('#phrase ul');
-
+        // Creates each an element for each letter and/or spaces with their proper css classes and appends them
         this.phrase.split('').forEach(char => {
-            console.log(char);
             var element = document.createElement('li');
             if (char != ' ') {
                 element.setAttribute('class', `hide letter ${char}`);
@@ -25,9 +25,11 @@ class Phrase {
         });        
     }
 
+    // This method accepts a key value and checks if it exist in the phrase
     checkLetter(keySelection) {
         var found = false;
         var keyClass = '';
+        // Adds css class if the key exists on the phrase or not
         if (this.phrase.indexOf(keySelection) > -1) {
             keyClass = 'chosen'
             found = true;
@@ -35,6 +37,7 @@ class Phrase {
             keyClass = 'wrong'
         }
         var keyButtons = document.querySelectorAll('.key');
+        // Disables the digital key after it's been pressed
         keyButtons.forEach(key => {
             if(key.innerHTML == keySelection) {
                 this.showMatchedLetter(keySelection);
@@ -45,6 +48,7 @@ class Phrase {
         return found;
     }
 
+    // This method accepts the key and displays the matched letters
     showMatchedLetter(keySelection) {
         var letters = document.querySelectorAll(`.${keySelection}`);
         letters.forEach(letter => {
