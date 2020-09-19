@@ -3,7 +3,7 @@
  * Phrase.js */
 
 class Phrase {
-    phrase = null;
+    phrase;
 
     constructor(phrase) {
         this.phrase = phrase.toLowerCase();
@@ -27,25 +27,9 @@ class Phrase {
 
     // This method accepts a key value and checks if it exist in the phrase
     checkLetter(keySelection) {
-        var found = false;
-        var keyClass = '';
-        // Adds css class if the key exists on the phrase or not
         if (this.phrase.indexOf(keySelection) > -1) {
-            keyClass = 'chosen'
-            found = true;
-        } else {
-            keyClass = 'wrong'
-        }
-        var keyButtons = document.querySelectorAll('.key');
-        // Disables the digital key after it's been pressed
-        keyButtons.forEach(key => {
-            if(key.innerHTML == keySelection) {
-                this.showMatchedLetter(keySelection);
-                key.setAttribute('disabled', true);
-                key.setAttribute('class', keyClass);
-            }
-        });
-        return found;
+            return true;
+        } 
     }
 
     // This method accepts the key and displays the matched letters

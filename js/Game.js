@@ -18,27 +18,45 @@ class Game {
         // Hides the start screen overlay
         this.overlay = document.querySelector('#overlay');
         this.overlay.remove();
-        // Gets a phrase from phrases arr
-        this.activePhrase = this.getRandomPhrase();
+        
+        // Gets random phrase and assigns it to activePhrase
+        this.getRandomPhrase();
+
         // Initialized Phrase obj with activePhrase
         this.phrase = new Phrase(this.activePhrase);
-        // Calls the addPhraseToDisplay method
-        this.phrase.addPhraseToDisplay();
+
+        // Gets a phrase from phrases arr
+        this.activePhrase = this.phrase.addPhraseToDisplay();
     }
 
     // randomly retrieves one phrase from the phrases array
     getRandomPhrase() {
         var index = Math.floor(Math.random() * this.phrases.length);
-        return this.phrases[index];
+        this.activePhrase = this.phrases[index];
     }
 
     // this method disables the selected digital key, removes a life if the key is not found and checks for win
     handleInteraction(keySelection) {
-        var found = this.phrase.checkLetter(keySelection.toLowerCase());
+        const found = this.phrase.checkLetter(keySelection.toLowerCase());
+        const keyButtons = document.querySelectorAll('.key');
+        
         if (!found) {
             this.removeLife();
         }
-        this.checkForWin();
+
+        keyButtons.forEach(key => {
+            if(key.innerHTML == keySelection.toLowerCase()) {
+                this.phrase.showMatchedLetter(keySelection.toLowerCase());
+                key.setAttribute('disabled', true);
+                key.setAttribute('class', found? 'chosen':'wrong');
+            }
+        });
+
+        if (this.checkForWin()) {
+            this.gameOver();
+        } else if (this.missed > 4) {
+            this.gameOver();
+        }
     }
 
     // this method removes a life from the missed count and replaces the heart image with the hearless
@@ -52,19 +70,15 @@ class Game {
 
     // this method check if the user has won
     checkForWin() {
-        if (this.missed > 4) {
-            this.gameOver();
-        }
         const letters = document.querySelectorAll('.letter');
-        let isWin = true;
+        let playerWon = true;
         letters.forEach(letter => { 
             if(letter.classList.contains('hide')) {
-                isWin = false;
+                playerWon = false;
             }
         });
-        if (isWin) {
-            this.gameOver();
-        }
+
+        return playerWon;
     }
 
     // this method is called once the game is over and displays the overlay with a message
@@ -89,7 +103,7 @@ class Game {
         phraseUl.innerHTML = '';
 
         // Resets Score Images
-        const lifes = document.querySelectorAll("img[src='images/lostHeart.png']");
+        const lifes = document.querySelectorAll("#scoreboard img");
         lifes.forEach(life => {
             life.src = 'images/heart.png'
         });
