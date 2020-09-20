@@ -54,18 +54,18 @@ class Game {
 
         if (this.checkForWin()) {
             this.gameOver();
-        } else if (this.missed > 4) {
-            this.gameOver();
         }
     }
 
     // this method removes a life from the missed count and replaces the heart image with the hearless
     removeLife() {
-        if (this.missed <= 4) {
-            this.missed += 1;
+        this.missed += 1;
+        if (this.missed == 5) {
+           this.gameOver();
+        } else {
             const lifes = document.querySelectorAll("img[src='images/heart.png']");
             lifes[lifes.length - 1].src = 'images/heartless.png';
-        } 
+        }
     }
 
     // this method check if the user has won

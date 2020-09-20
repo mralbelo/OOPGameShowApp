@@ -29,7 +29,9 @@ class Phrase {
     checkLetter(keySelection) {
         if (this.phrase.indexOf(keySelection) > -1) {
             return true;
-        } 
+        } else {
+            return false;
+        }
     }
 
     // This method accepts the key and displays the matched letters
